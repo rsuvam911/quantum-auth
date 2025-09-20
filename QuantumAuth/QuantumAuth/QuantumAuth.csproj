@@ -1,15 +1,30 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
+  <Target Name="EnsureNodeModules" BeforeTargets="TailwindBuild;TailwindRelease">
+    <!-- Run npm install only if node_modules does not exist -->
+    <Exec Command="npm install" Condition="!Exists('node_modules')" />
+  </Target>
+  <Target Name="TailwindBuild" DependsOnTargets="EnsureNodeModules" BeforeTargets="Build">
+    <Exec Command="npx tailwindcss -i ./wwwroot/app.css -o ./wwwroot/dist.css" />
+  </Target>
+  <Target
+    Name="TailwindRelease"
+    DependsOnTargets="EnsureNodeModules"
+    BeforeTargets="Publish"
+    Condition="'$(Configuration)' == 'Release'"
+  >
+    <Exec Command="npx tailwindcss -i ./wwwroot/app.css -o ./wwwroot/dist.min.css --minify" />
+  </Target>
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\quantum-auth.ServiceDefaults\quantum-auth.ServiceDefaults.csproj" />
     <ProjectReference Include="..\QuantumAuth.Client\QuantumAuth.Client.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.20" />
+    <PackageReference
+      Include="Microsoft.AspNetCore.Components.WebAssembly.Server"
+      Version="8.0.20"
+    />
   </ItemGroup>
-
 </Project>

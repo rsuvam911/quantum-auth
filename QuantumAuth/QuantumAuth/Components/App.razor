@@ -5,10 +5,85 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="dist.css" />
     <link rel="stylesheet" href="QuantumAuth.styles.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
+    <style>
+        /* Existing styles remain unchanged */
+        body {
+            background-color: #121313;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background-color: #1f1e1f;
+            width: 256px;
+            flex-shrink: 0;
+            overflow-y: auto;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar a {
+            color: #b0b0b0;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #2e2d2e;
+            color: #ffffff;
+        }
+
+        .sidebar .active {
+            background-color: #383738;
+            color: #ffffff;
+        }
+
+        .sidebar .active:hover {
+            background-color: #2e2d2e;
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 24px;
+            margin-left: 256px;
+            /* Same as sidebar width */
+        }
+
+        .logo {
+            padding: 20px 15px;
+            border-bottom: 1px solid #2e2d2e;
+            margin-bottom: 20px;
+        }
+
+        .nav-item {
+            margin-bottom: 5px;
+        }
+
+        .nav-text {
+            margin-left: 15px;
+        }
+
+        .nav-section-title {
+            color: #6b7280;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 0 1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ... (other existing styles remain the same) ... */
+    </style>
     <HeadOutlet />
 </head>
 
